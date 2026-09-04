@@ -1,0 +1,1016 @@
+VERSION 5.00
+Begin VB.PropertyPage ppgImages 
+   AutoRedraw      =   -1  'True
+   Caption         =   "Images"
+   ClientHeight    =   4650
+   ClientLeft      =   0
+   ClientTop       =   0
+   ClientWidth     =   5790
+   BeginProperty Font 
+      Name            =   "Tahoma"
+      Size            =   8.25
+      Charset         =   0
+      Weight          =   400
+      Underline       =   0   'False
+      Italic          =   0   'False
+      Strikethrough   =   0   'False
+   EndProperty
+   PaletteMode     =   0  'Halftone
+   ScaleHeight     =   4650
+   ScaleWidth      =   5790
+   Begin VB.PictureBox picIcons 
+      BackColor       =   &H80000005&
+      Height          =   1215
+      Left            =   60
+      ScaleHeight     =   1155
+      ScaleWidth      =   5595
+      TabIndex        =   20
+      Top             =   3000
+      Width           =   5655
+      Begin VB.HScrollBar hscScroll 
+         Height          =   195
+         Left            =   0
+         TabIndex        =   21
+         TabStop         =   0   'False
+         Top             =   960
+         Width           =   5610
+      End
+   End
+   Begin VB.Frame fraTransparentColour 
+      Height          =   2055
+      Left            =   60
+      TabIndex        =   0
+      Top             =   0
+      Width           =   5655
+      Begin VB.CommandButton cmdPickColour 
+         Caption         =   "&Pick..."
+         Height          =   315
+         Left            =   3180
+         TabIndex        =   11
+         ToolTipText     =   "Choose Transparent Colour"
+         Top             =   900
+         Width           =   1035
+      End
+      Begin VB.TextBox txtRGB 
+         Height          =   315
+         Index           =   2
+         Left            =   1080
+         TabIndex        =   9
+         Text            =   "255"
+         Top             =   1500
+         Width           =   795
+      End
+      Begin VB.TextBox txtRGB 
+         Height          =   315
+         Index           =   1
+         Left            =   1080
+         TabIndex        =   7
+         Text            =   "255"
+         Top             =   1200
+         Width           =   795
+      End
+      Begin VB.TextBox txtRGB 
+         Height          =   315
+         Index           =   0
+         Left            =   1080
+         TabIndex        =   5
+         Text            =   "0"
+         Top             =   900
+         Width           =   795
+      End
+      Begin VB.OptionButton optTransparentColour 
+         Appearance      =   0  'Flat
+         Caption         =   "Use Co&lour:"
+         ForeColor       =   &H80000008&
+         Height          =   195
+         Index           =   1
+         Left            =   180
+         TabIndex        =   3
+         Top             =   660
+         Width           =   5115
+      End
+      Begin VB.OptionButton optTransparentColour 
+         Appearance      =   0  'Flat
+         Caption         =   "&Set Automatically from Top-Left Pixel of Image"
+         ForeColor       =   &H80000008&
+         Height          =   255
+         Index           =   0
+         Left            =   180
+         TabIndex        =   2
+         Top             =   420
+         Value           =   -1  'True
+         Width           =   5115
+      End
+      Begin VB.Label lblColor 
+         BorderStyle     =   1  'Fixed Single
+         Height          =   915
+         Left            =   1980
+         TabIndex        =   10
+         Top             =   900
+         Width           =   1155
+      End
+      Begin VB.Label lblRGB 
+         Caption         =   "&Blue:"
+         Height          =   195
+         Index           =   2
+         Left            =   480
+         TabIndex        =   8
+         Top             =   1560
+         Width           =   555
+      End
+      Begin VB.Label lblRGB 
+         Caption         =   "&Green:"
+         Height          =   195
+         Index           =   1
+         Left            =   480
+         TabIndex        =   6
+         Top             =   1260
+         Width           =   555
+      End
+      Begin VB.Label lblRGB 
+         Caption         =   "Re&d:"
+         Height          =   195
+         Index           =   0
+         Left            =   480
+         TabIndex        =   4
+         Top             =   960
+         Width           =   495
+      End
+      Begin VB.Label lblBitmapColour 
+         Caption         =   "Bitmap &Transparent Colour (set before adding bitmaps or GIFs):"
+         Height          =   315
+         Left            =   120
+         TabIndex        =   1
+         Top             =   180
+         Width           =   5355
+      End
+   End
+   Begin VB.CommandButton cmdMoveUp 
+      Caption         =   ">>"
+      Height          =   315
+      Left            =   3360
+      TabIndex        =   25
+      ToolTipText     =   "Move Selected Image Forward"
+      Top             =   4260
+      Width           =   1035
+   End
+   Begin VB.CommandButton cmdMoveDown 
+      Caption         =   "<<"
+      Height          =   315
+      Left            =   2280
+      TabIndex        =   24
+      ToolTipText     =   "Move Selected Image Back"
+      Top             =   4260
+      Width           =   1035
+   End
+   Begin VB.CommandButton cmdClear 
+      Caption         =   "&Clear..."
+      Height          =   315
+      Left            =   4680
+      TabIndex        =   26
+      ToolTipText     =   "Clear the Image List"
+      Top             =   4260
+      Width           =   1035
+   End
+   Begin VB.CommandButton cmdRemove 
+      Caption         =   "&Remove..."
+      Height          =   315
+      Left            =   1140
+      TabIndex        =   23
+      ToolTipText     =   "Remove Selected Image"
+      Top             =   4260
+      Width           =   1035
+   End
+   Begin VB.CommandButton cmdAdd 
+      Caption         =   "&Add..."
+      Height          =   315
+      Left            =   60
+      TabIndex        =   22
+      ToolTipText     =   "Add One or More Images"
+      Top             =   4260
+      Width           =   1035
+   End
+   Begin VB.Frame fraCurrent 
+      Height          =   915
+      Left            =   60
+      TabIndex        =   12
+      Top             =   2040
+      Width           =   5655
+      Begin VB.CheckBox chkSetKeys 
+         Caption         =   "Set Keys from &Filename(s)"
+         Height          =   195
+         Left            =   3240
+         TabIndex        =   19
+         Top             =   600
+         Width           =   2235
+      End
+      Begin VB.CommandButton cmdNext 
+         Appearance      =   0  'Flat
+         Caption         =   "4"
+         BeginProperty Font 
+            Name            =   "Marlett"
+            Size            =   9
+            Charset         =   2
+            Weight          =   500
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   315
+         Left            =   2340
+         TabIndex        =   16
+         ToolTipText     =   "Select Next Icon"
+         Top             =   180
+         Width           =   315
+      End
+      Begin VB.CommandButton cmdBack 
+         Caption         =   "3"
+         BeginProperty Font 
+            Name            =   "Marlett"
+            Size            =   9
+            Charset         =   2
+            Weight          =   500
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   315
+         Left            =   2040
+         TabIndex        =   15
+         ToolTipText     =   "Select Previous Icon"
+         Top             =   180
+         Width           =   315
+      End
+      Begin VB.TextBox txtIndex 
+         BackColor       =   &H8000000F&
+         Height          =   315
+         Left            =   720
+         Locked          =   -1  'True
+         TabIndex        =   14
+         Top             =   180
+         Width           =   1215
+      End
+      Begin VB.TextBox txtKey 
+         BackColor       =   &H8000000F&
+         Height          =   345
+         Left            =   3240
+         TabIndex        =   18
+         Top             =   180
+         Width           =   2175
+      End
+      Begin VB.Label lblItemIndex 
+         Caption         =   "I&ndex:"
+         Height          =   195
+         Left            =   120
+         TabIndex        =   13
+         Top             =   240
+         Width           =   555
+      End
+      Begin VB.Label lblItemKey 
+         Caption         =   "&Key:"
+         Height          =   195
+         Left            =   2820
+         TabIndex        =   17
+         Top             =   240
+         Width           =   435
+      End
+   End
+End
+Attribute VB_Name = "ppgImages"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = True
+Attribute VB_PredeclaredId = False
+Attribute VB_Exposed = True
+Option Explicit
+
+Private m_iSelectedImage As Long
+Private m_tImageR As RECT
+Private m_bInFocus As Boolean
+
+Private Function psGetNextKey(ByVal iCount As Long, ByVal sKeyBase As String, ByRef iInc As Long) As String
+Dim iL As Long
+Dim sTest As String
+   
+   If iInc = 0 Then
+      sTest = sKeyBase
+   Else
+      sTest = sKeyBase & ":" & iInc
+   End If
+   Do While SelectedControls(0).KeyExists(sTest)
+      iInc = iInc + 1
+      sTest = sKeyBase & ":" & iInc
+   Loop
+   psGetNextKey = sTest
+   
+End Function
+
+Private Sub pAddAllAniFrames(ByVal sFile As String, ByVal iAfter As Long, ByVal sKey As String)
+Dim lHDCDisp As Long
+Dim lHDC As Long
+Dim hAni As Long
+Dim lR As Long
+Dim iStep As Long
+Dim i As Long
+Dim cx As Long
+Dim cy As Long
+Dim lhBmp As Long
+Dim lhBmpOld As Long
+Dim lBackColor As Long
+Dim tR As RECT
+Dim hBr As Long
+   
+   cx = SelectedControls(0).IconSizeX
+   cy = SelectedControls(0).IconSizeY
+
+   hAni = LoadImage(App.hInstance, sFile, IMAGE_CURSOR, cx, cy, LR_LOADFROMFILE)
+   If hAni <> 0 Then
+      
+      lHDCDisp = CreateDCAsNull("DISPLAY", ByVal 0&, ByVal 0&, ByVal 0&)
+      If lHDCDisp <> 0 Then
+         lHDC = CreateCompatibleDC(lHDCDisp)
+         If lHDC <> 0 Then
+            ' Determine how many ani frames:
+            iStep = 0
+            Do
+               lR = DrawIconEx(lHDC, 0, 0, hAni, cx, cy, iStep, 0, 0)
+               If lR <> 0 Then
+                  iStep = iStep + 1
+               End If
+            Loop While lR <> 0
+            
+            ' Now we have the steps, create the bitmap of the right size:
+            lhBmp = CreateCompatibleBitmap(lHDCDisp, cx * iStep, cy)
+            If (lhBmp <> 0) Then
+               lhBmpOld = SelectObject(lHDC, lhBmp)
+               tR.Right = cx * iStep
+               tR.Bottom = cy
+               If optTransparentColour(0).Value Then
+                  lBackColor = &HFFFF00
+               Else
+                  lBackColor = lblColor.BackColor
+               End If
+               hBr = CreateSolidBrush(lBackColor)
+               FillRect lHDC, tR, hBr
+               DeleteObject hBr
+               
+               For i = 0 To iStep - 1
+                  lR = DrawIconEx(lHDC, i * cx, 0, hAni, cx, cy, i, 0, DI_NORMAL)
+               Next i
+               
+               SelectObject lHDC, lhBmpOld
+               SelectedControls(0).AddFromHandle lhBmp, IMAGE_BITMAP, sKey, lBackColor, iAfter
+               
+               DeleteObject lhBmp
+            End If
+            DeleteDC lHDCDisp
+               
+         End If
+         DeleteDC lHDCDisp
+
+      End If
+      DestroyIcon hAni
+      
+   End If
+End Sub
+
+Private Sub pEnsureVisible(ByVal iDir As Long)
+Dim hIml As Long
+Dim iCount As Long
+Dim lX As Long
+Dim iImgWidth As Long
+Dim iImgHeight As Long
+
+   hIml = SelectedControls(0).hIml
+   If hIml <> 0 Then
+      iCount = SelectedControls(0).ImageCount
+      If (iCount > 0) Then
+         If iDir = 1 Then
+            lX = m_tImageR.left
+            If (hscScroll.Visible) Then
+               lX = lX - hscScroll.Value
+               ImageList_GetIconSize hIml, iImgWidth, iImgHeight
+               lX = lX + (iImgWidth + 2) * (m_iSelectedImage + 1)
+               If (lX > m_tImageR.Right) Then
+                  If (hscScroll.Value + iImgWidth + 4 < hscScroll.Max) Then
+                     hscScroll.Value = hscScroll.Value + iImgWidth + 4
+                  Else
+                     hscScroll.Value = hscScroll.Max
+                  End If
+               End If
+            End If
+         Else
+            lX = m_tImageR.left
+            If (hscScroll.Visible) Then
+               lX = lX - hscScroll.Value
+               ImageList_GetIconSize hIml, iImgWidth, iImgHeight
+               lX = lX + (iImgWidth + 2) * m_iSelectedImage
+               If (lX < m_tImageR.left) Then
+                  If hscScroll.Value > iImgWidth + 4 Then
+                     hscScroll.Value = hscScroll.Value - iImgWidth - 4
+                  Else
+                     hscScroll.Value = 0
+                  End If
+               End If
+            End If
+         End If
+      End If
+   End If
+End Sub
+
+Private Sub pApplyKey()
+   On Error Resume Next
+   If txtKey.Tag = "CHANGED" Then
+      If m_iSelectedImage > -1 Then
+         SelectedControls(0).ItemKey(m_iSelectedImage + 1) = txtKey.Text
+         If Err.Number <> 0 Then
+            MsgBox Err.Description, vbInformation
+         End If
+         txtKey.Tag = ""
+      End If
+   End If
+
+End Sub
+
+Private Function plColValidate(ByVal sThis As String) As Long
+Dim lV As Long
+   On Error Resume Next
+   lV = Val(sThis)
+   If (Err.Number = 0) Then
+      If (lV < 0) Then lV = 0
+      If (lV > 255) Then lV = 255
+   Else
+      lV = 0
+   End If
+   plColValidate = lV
+End Function
+
+Private Sub pRenderColour()
+Dim lR As Long, lG As Long, lB As Long
+Dim lC As Long
+   If optTransparentColour(1).Value Then
+      lR = plColValidate(txtRGB(0).Text)
+      lG = plColValidate(txtRGB(1).Text)
+      lB = plColValidate(txtRGB(2).Text)
+      lC = lR + (lG * &H100&) + (lB * &H10000)
+      'Debug.Print lR, lG, lB, lC
+   Else
+      lC = vbButtonFace
+   End If
+   lblColor.BackColor = lC
+End Sub
+Private Sub pOnlyNumeric(ByRef KeyAscii As Integer)
+    If (KeyAscii >= Asc("0")) And (KeyAscii <= Asc("9")) Then
+    Else
+      If (KeyAscii = 8) Then
+      Else
+         KeyAscii = 0
+      End If
+    End If
+End Sub
+
+Private Sub DrawImages()
+Dim hIml As Long
+Dim iImgHeight As Long
+Dim iImgWidth As Long
+Dim iImg As Long
+Dim iCount As Long
+Dim lHDC As Long
+Dim tR As RECT, hBr As Long
+Dim tTR As RECT
+Dim x As Long, y As Long
+Dim hRgn As Long, hRgnOld As Long
+Dim iMax As Integer
+Dim bInHere As Boolean
+Dim vKey As Variant
+
+   If Not (bInHere) Then
+      bInHere = True
+   
+      lHDC = picIcons.hdc
+      y = (fraCurrent.tOp + fraCurrent.Height) \ Screen.TwipsPerPixelY + 8
+      hBr = CreateSolidBrush(TranslateColor(vbWindowBackground))
+      tR.left = 0 'fraCurrent.left \ Screen.TwipsPerPixelX
+      tR.tOp = 0 'y
+      tR.Right = tR.left + picIcons.ScaleWidth \ Screen.TwipsPerPixelX '(fraCurrent.Width) \ Screen.TwipsPerPixelX
+      tR.Bottom = picIcons.ScaleHeight \ Screen.TwipsPerPixelY '(hscScroll.tOp + hscScroll.Height) \ Screen.TwipsPerPixelX + 2
+      FillRect lHDC, tR, hBr
+      DeleteObject hBr
+      LSet m_tImageR = tR
+      'DrawEdge lHDC, tR, BDR_SUNKENINNER Or BDR_SUNKENOUTER, BF_RECT
+      'tR.tOp = tR.tOp + 2: tR.left = tR.left + 2: tR.Right = tR.Right - 4: tR.Bottom = tR.Bottom - 4
+      'hRgn = CreateRectRgn(tR.left, tR.tOp, tR.Right, tR.Bottom)
+      'hRgnOld = SelectClipRgn(lHDC, hRgn)
+      tR.tOp = tR.tOp + 2
+      
+      hIml = SelectedControls(0).hIml
+      If (hIml <> 0) Then
+      
+         ' Get image list information:
+         iCount = ImageList_GetImageCount(hIml)
+         If m_iSelectedImage >= iCount Then
+            m_iSelectedImage = iCount - 1
+         End If
+         ImageList_GetIconSize hIml, iImgWidth, iImgHeight
+         
+         ' Evaluate hScroll boundaries:
+         iMax = (tR.Right - tR.left) \ (iImgWidth + 2)
+         If (iCount > iMax) Then
+            hscScroll.Max = (iCount - iMax) * (iImgWidth + 2)
+            hscScroll.SmallChange = iImgWidth + 2
+            hscScroll.LargeChange = (iImgWidth + 2) * 8
+            hscScroll.Visible = True
+         Else
+            hscScroll.Value = 0
+            hscScroll.Visible = False
+         End If
+                              
+         x = -1 * hscScroll.Value + tR.left
+         For iImg = 0 To iCount - 1
+            If (x + iImgWidth > tR.left) Then
+               ImageList_Draw _
+                  hIml, _
+                  iImg, _
+                  lHDC, _
+                  x, _
+                  tR.tOp + 2, _
+                  ILD_TRANSPARENT
+               If iImg = m_iSelectedImage Then
+                  tTR.left = x - 2
+                  tTR.tOp = tR.tOp
+                  tTR.Right = tTR.left + iImgWidth + 4
+                  tTR.Bottom = tTR.tOp + iImgHeight + 4
+                  If m_bInFocus Then
+                     DrawEdge lHDC, tTR, BDR_RAISEDINNER Or BDR_RAISEDOUTER, BF_RECT
+                  Else
+                     DrawEdge lHDC, tTR, BDR_RAISEDOUTER, BF_RECT
+                  End If
+               End If
+            End If
+            x = x + iImgWidth + 2
+            If (x > tR.Right) Then
+               Exit For
+            End If
+         Next iImg
+      End If
+      
+      bInHere = False
+   End If
+   cmdNext.Enabled = (m_iSelectedImage < iCount - 1)
+   cmdBack.Enabled = (m_iSelectedImage > 0)
+   cmdMoveUp.Enabled = cmdNext.Enabled
+   cmdMoveDown.Enabled = cmdBack.Enabled
+   cmdRemove.Enabled = (iCount > 0)
+   
+   'SelectClipRgn lHDC, hRgnOld
+   'DeleteObject hRgn
+   
+   If (iCount = 0) Then
+      txtIndex.Text = ""
+      txtIndex.Enabled = False
+      txtKey.Text = ""
+      txtKey.Enabled = False
+   Else
+      txtIndex.Text = m_iSelectedImage + 1 & " of " & SelectedControls(0).ImageCount
+      txtIndex.Enabled = True
+      txtKey.Tag = "POPULATE"
+      If (m_iSelectedImage > -1) And (m_iSelectedImage < SelectedControls(0).ImageCount) Then
+         On Error Resume Next
+         txtKey.Text = SelectedControls(0).ItemKey(m_iSelectedImage + 1)
+         Err.Clear
+      End If
+      txtKey.Enabled = True
+      txtKey.Tag = ""
+   End If
+   
+   PropertyPage.Refresh
+   
+End Sub
+
+Private Sub cmdAdd_Click()
+Dim sFileName As String
+Dim sFiles() As String
+Dim sFileBit As String
+Dim sPath As String
+Dim sKey As String
+Dim iFile As Long
+Dim iFileCount As Long
+Dim iPos As Long
+Dim iLastPos As Long
+Dim iOrigCount As Long, iNewCount As Long
+Dim sExt As String
+Dim sPic As StdPicture
+Dim lTransColour As Long
+Dim bDoIndex As Boolean
+Dim iThisIndex As Long
+Dim iInc As Long
+
+   If (VBGetOpenFileName(sFileName, , , , , , "ImageList Pictures (*.ICO;*.CUR;*.ANI;*.BMP;*.DIB;*.GIF)|*.ICO;*.CUR;*.ANI;*.BMP;*.GIF|Icon Files (*.ICO)|*.ICO|Cursor Files (*.CUR;*.ANI)|*.CUR;*.ANI;|Bitmap Files (*.BMP;*.DIB)|*.BMP;*.DIB|GIF Files (*.GIF)|*.GIF|All Files (*.*)|*.*", , , "Choose Icon to add", "ICO", cmdAdd.hwnd, OFN_ALLOWMULTISELECT Or OFN_EXPLORER)) Then
+      If (sFileName <> "") Then
+         If InStr(sFileName, vbNullChar) <> 0 Then
+            ' multi select:
+            iLastPos = 1
+            Do
+               iPos = InStr(iLastPos, sFileName, vbNullChar)
+               If (iPos <> 0) Then
+                  If iFileCount = 0 Then
+                     sPath = Mid$(sFileName, iLastPos, iPos - iLastPos)
+                     If Right$(sPath, 1) <> "\" Then sPath = sPath & "\"
+                  Else
+                     ReDim Preserve sFiles(1 To iFileCount) As String
+                     sFiles(iFileCount) = sPath & Mid$(sFileName, iLastPos, iPos - iLastPos)
+                  End If
+                  iLastPos = iPos + 1
+                  iFileCount = iFileCount + 1
+               Else
+                  If (iLastPos < Len(sFileName)) Then
+                     ReDim Preserve sFiles(1 To iFileCount) As String
+                     sFiles(iFileCount) = sPath & Mid$(sFileName, iLastPos)
+                  End If
+               End If
+            Loop While iPos <> 0
+         Else
+            ' single select:
+            ReDim sFiles(1 To 1) As String
+            sFiles(1) = sFileName
+            sPath = ""
+            For iPos = Len(sFiles(1)) To 1 Step -1
+               If Mid$(sFiles(1), iPos, 1) = "\" Then
+                  sPath = left$(sFiles(1), iPos)
+                  Exit For
+               End If
+            Next iPos
+            iFileCount = 1
+         End If
+         If optTransparentColour(0).Value Then
+            lTransColour = -1
+         Else
+            lTransColour = lblColor.BackColor
+         End If
+         For iFile = 1 To iFileCount
+            iOrigCount = SelectedControls(0).ImageCount
+            sExt = ""
+            For iPos = Len(sFiles(iFile)) To 1 Step -1
+               If Mid$(sFiles(iFile), iPos, 1) = "." Then
+                  sExt = UCase$(Mid$(sFiles(iFile), iPos + 1))
+                  Exit For
+               End If
+            Next iPos
+                  
+            If chkSetKeys.Value = Checked Then
+               sFileBit = UCase$(Mid$(sFiles(iFile), Len(sPath) + 1))
+               If Len(sExt) > 0 Then
+                  sFileBit = left$(sFileBit, Len(sFileBit) - Len(sExt) - 1)
+               End If
+            End If
+            
+            Select Case sExt
+            Case "ICO"
+               SelectedControls(0).AddFromFile sFiles(iFile), IMAGE_ICON, sFileBit, , , m_iSelectedImage + 1
+            Case "CUR"
+               SelectedControls(0).AddFromFile sFiles(iFile), IMAGE_CURSOR, sFileBit, , , m_iSelectedImage + 1
+            Case "ANI"
+               If vbYes = MsgBox("Do you want to load all frames of the animated cursor file '" & sFiles(iFile) & "'?", vbYesNo Or vbQuestion) Then
+                  pAddAllAniFrames sFiles(iFile), m_iSelectedImage + 1, sFileBit
+               Else
+                  SelectedControls(0).AddFromFile sFiles(iFile), IMAGE_CURSOR, sFileBit, , , m_iSelectedImage + 1
+               End If
+            Case "BMP", "DIB"
+               SelectedControls(0).AddFromFile sFiles(iFile), IMAGE_BITMAP, sFileBit, , lTransColour, m_iSelectedImage + 1
+            Case Else
+               ' Assume some other type of picture:
+               On Error Resume Next
+               Set sPic = LoadPicture(sFiles(iFile))
+               If (Err.Number = 0) Then
+                  SelectedControls(0).AddFromHandle sPic.Handle, IMAGE_BITMAP, sFileBit, lTransColour, m_iSelectedImage + 1
+                  Set sPic = Nothing
+               End If
+               Err.Clear
+            End Select
+            
+            iNewCount = SelectedControls(0).ImageCount
+            If iNewCount = iOrigCount Then
+               MsgBox "The file '" & sFiles(iFile) & "' could not be loaded.  Please check whether this is a valid image.", vbInformation
+            ElseIf iNewCount > iOrigCount + 1 Then
+               ' Set keys for new items?
+               If chkSetKeys.Value = Checked Then
+                  iInc = 1
+                  If iOrigCount = 0 Or m_iSelectedImage < 0 Or m_iSelectedImage > iOrigCount Then
+                     ' added items:
+                     For iPos = 1 To iNewCount
+                        sKey = psGetNextKey(iNewCount, sFileBit, iInc)
+                        SelectedControls(0).ItemKey(iPos) = sKey
+                     Next iPos
+                  Else
+                     For iPos = 1 To iNewCount - iOrigCount
+                        sKey = psGetNextKey(iNewCount, sFileBit, iInc)
+                        SelectedControls(0).ItemKey(m_iSelectedImage + iPos) = sKey
+                     Next iPos
+                  End If
+               End If
+            End If
+            
+         Next iFile
+         If (m_iSelectedImage < 0) Then m_iSelectedImage = 0
+         If (m_iSelectedImage > SelectedControls(0).ImageCount - 1) Then
+            m_iSelectedImage = SelectedControls(0).ImageCount - 1
+         End If
+         DrawImages
+         Changed = True
+      End If
+   End If
+End Sub
+
+
+Private Sub cmdBack_Click()
+Dim hIml As Long
+Dim iCount As Long
+Dim lX As Long
+Dim iImgWidth As Long
+Dim iImgHeight As Long
+
+   hIml = SelectedControls(0).hIml
+   If hIml <> 0 Then
+      iCount = SelectedControls(0).ImageCount
+      If (iCount > 0) Then
+         m_iSelectedImage = m_iSelectedImage - 1
+         pEnsureVisible -1
+         DrawImages
+      Else
+         cmdBack.Enabled = False
+      End If
+   Else
+      cmdBack.Enabled = False
+   End If
+End Sub
+
+Private Sub cmdClear_Click()
+    If MsgBox("Are you sure you want to remove all icons?", vbYesNo Or vbQuestion) = vbYes Then
+        SelectedControls(0).Clear
+        DrawImages
+        Changed = True
+    End If
+End Sub
+
+Private Sub cmdMoveDown_Click()
+Dim sKey As String
+Dim sSwap As String
+   If (SelectedControls(0).hIml <> 0) Then
+      If (m_iSelectedImage > 0) And (SelectedControls(0).ImageCount > 0) Then
+         SelectedControls(0).SwapOrCopyImage m_iSelectedImage + 1, m_iSelectedImage
+         ' 29/12/99 (1) fix: thanks to Richard Deeming
+         'sKey = SelectedControls(0).ItemKey(m_iSelectedImage)
+         'sSwap = SelectedControls(0).ItemKey(m_iSelectedImage + 1)
+         'SelectedControls(0).ItemKey(m_iSelectedImage + 1) = ""
+         'SelectedControls(0).ItemKey(m_iSelectedImage) = sSwap
+         'SelectedControls(0).ItemKey(m_iSelectedImage + 1) = sKey
+         m_iSelectedImage = m_iSelectedImage - 1
+         pEnsureVisible -1
+         DrawImages
+         Changed = True
+      End If
+   End If
+End Sub
+
+Private Sub cmdMoveUp_Click()
+Dim sKey As String
+Dim sSwap As String
+   If (SelectedControls(0).hIml <> 0) Then
+      If (m_iSelectedImage > -1) And (SelectedControls(0).ImageCount > m_iSelectedImage + 1) Then
+         SelectedControls(0).SwapOrCopyImage m_iSelectedImage + 1, m_iSelectedImage + 2
+         ' 29/12/99 (1) fix: thanks to Richard Deeming
+         'sKey = SelectedControls(0).ItemKey(m_iSelectedImage + 1)
+         'sSwap = SelectedControls(0).ItemKey(m_iSelectedImage + 2)
+         'SelectedControls(0).ItemKey(m_iSelectedImage + 1) = ""
+         'SelectedControls(0).ItemKey(m_iSelectedImage + 1) = sSwap
+         'SelectedControls(0).ItemKey(m_iSelectedImage + 2) = sKey
+         m_iSelectedImage = m_iSelectedImage + 1
+         pEnsureVisible 1
+         DrawImages
+         Changed = True
+      End If
+   End If
+
+End Sub
+
+Private Sub cmdNext_Click()
+Dim hIml As Long
+Dim iCount As Long
+Dim lX As Long
+Dim iImgWidth As Long
+Dim iImgHeight As Long
+
+   hIml = SelectedControls(0).hIml
+   If hIml <> 0 Then
+      iCount = SelectedControls(0).ImageCount
+      If (iCount > 0) Then
+         If m_iSelectedImage < iCount Then
+            
+            m_iSelectedImage = m_iSelectedImage + 1
+         
+            pEnsureVisible 1
+            
+            DrawImages
+         End If
+      Else
+         cmdNext.Enabled = False
+      End If
+   Else
+      cmdNext.Enabled = False
+   End If
+End Sub
+
+Private Sub cmdPickColour_Click()
+Dim lColor As Long
+   lColor = TranslateColor(lblColor.BackColor)
+   If VBChooseColor(lColor, True, True, False, cmdPickColour.hwnd) Then
+      txtRGB(0).Text = (lColor And &HFF&)
+      txtRGB(1).Text = (lColor And &HFF00&) \ &H100&
+      txtRGB(2).Text = (lColor And &HFF0000) \ &H10000
+      pRenderColour
+   End If
+End Sub
+
+Private Sub cmdRemove_Click()
+   If (SelectedControls(0).hIml <> 0) Then
+      If SelectedControls(0).ImageCount > 0 Then
+         On Error Resume Next
+         SelectedControls(0).RemoveImage m_iSelectedImage + 1
+         'If Err.Number <> 0 Then
+         '   MsgBox Err.Description, vbInformation
+         'End If
+      Else
+         cmdRemove.Enabled = False
+      End If
+      DrawImages
+   End If
+End Sub
+
+Private Sub hscScroll_Change()
+   On Error Resume Next
+   DrawImages
+End Sub
+
+Private Sub hscScroll_Scroll()
+   hscScroll_Change
+End Sub
+
+Private Sub optTransparentColour_Click(Index As Integer)
+Dim i As Long
+   If optTransparentColour(0).Value Then
+      For i = 0 To 2
+         txtRGB(i).Enabled = False
+         txtRGB(i).BackColor = vbButtonFace
+         txtRGB(i).ForeColor = vb3DShadow
+         lblRGB(i).ForeColor = vb3DShadow
+      Next i
+      lblColor.BackColor = vbButtonFace
+      cmdPickColour.Enabled = False
+   Else
+      For i = 0 To 2
+         txtRGB(i).Enabled = True
+         txtRGB(i).BackColor = vbWindowBackground
+         txtRGB(i).ForeColor = vbWindowText
+         lblRGB(i).ForeColor = vbWindowText
+      Next i
+      pRenderColour
+      cmdPickColour.Enabled = True
+   End If
+End Sub
+
+Private Sub picIcons_GotFocus()
+   m_bInFocus = True
+   On Error Resume Next
+   DrawImages
+End Sub
+
+Private Sub picIcons_KeyDown(KeyCode As Integer, Shift As Integer)
+Dim iCount As Long
+   iCount = SelectedControls(0).ImageCount
+   If iCount > 0 Then
+      Select Case KeyCode
+      Case vbKeyLeft
+         If m_iSelectedImage > 0 Then
+            m_iSelectedImage = m_iSelectedImage - 1
+            pEnsureVisible -1
+            DrawImages
+         ElseIf m_iSelectedImage < 0 Then
+            m_iSelectedImage = 0
+            If hscScroll.Visible Then
+               hscScroll.Value = 0
+            End If
+            DrawImages
+         End If
+      Case vbKeyRight
+         If m_iSelectedImage < iCount - 1 Then
+            m_iSelectedImage = m_iSelectedImage + 1
+            pEnsureVisible 1
+            DrawImages
+         ElseIf m_iSelectedImage >= iCount Then
+            m_iSelectedImage = iCount - 1
+            If hscScroll.Visible Then
+               hscScroll.Value = hscScroll.Max
+            End If
+            DrawImages
+         End If
+      Case vbKeyHome
+         m_iSelectedImage = 0
+         If hscScroll.Visible Then
+            hscScroll.Value = 0
+         End If
+         DrawImages
+      Case vbKeyEnd
+         m_iSelectedImage = SelectedControls(0).ImageCount - 1
+         If hscScroll.Visible Then
+            hscScroll.Value = hscScroll.Max
+         End If
+         DrawImages
+      End Select
+   End If
+End Sub
+
+Private Sub picIcons_LostFocus()
+   m_bInFocus = False
+   On Error Resume Next
+   DrawImages
+End Sub
+
+Private Sub picIcons_MouseDown(Button As Integer, Shift As Integer, x As Single, y As Single)
+Dim lX As Long, lY As Long
+Dim iImgWidth As Long, iImgHeight As Long
+Dim iSelImage As Long
+Dim hIml As Long
+   
+   hIml = SelectedControls(0).hIml
+   If (hIml <> 0) Then
+      lX = x \ Screen.TwipsPerPixelX
+      lY = y \ Screen.TwipsPerPixelY
+      If (lX >= m_tImageR.left) And (lX <= m_tImageR.Right) Then
+         If (lY >= m_tImageR.tOp) And (lY <= m_tImageR.Bottom) Then
+            ' Clicked in the image rect:
+            If (hscScroll.Visible) Then
+               lX = lX + hscScroll.Value
+            End If
+            lX = lX - m_tImageR.left
+            ImageList_GetIconSize hIml, iImgWidth, iImgHeight
+            iSelImage = lX \ (iImgWidth + 2)
+            If (iSelImage < 0) Or (iSelImage > SelectedControls(0).ImageCount) Then
+            Else
+               m_iSelectedImage = iSelImage
+               DrawImages
+            End If
+         End If
+      End If
+   Else
+   End If
+End Sub
+
+Private Sub picIcons_Paint()
+   On Error Resume Next
+   DrawImages
+End Sub
+
+Private Sub PropertyPage_EditProperty(PropertyName As String)
+    '
+End Sub
+
+Private Sub PropertyPage_ApplyChanges()
+   If m_iSelectedImage > -1 Then
+      pApplyKey
+   End If
+   DrawImages
+End Sub
+
+Private Sub PropertyPage_Initialize()
+   m_iSelectedImage = 0
+   txtRGB_Change 0
+   hscScroll.Visible = False
+   optTransparentColour_Click 0
+End Sub
+
+Private Sub PropertyPage_SelectionChanged()
+   If (SelectedControls(0).ImageCount > 0) Then
+      txtKey.BackColor = vbWindowBackground
+   Else
+      txtKey.BackColor = vbButtonFace
+   End If
+   DrawImages
+End Sub
+
+Private Sub txtKey_Change()
+   If txtKey.Tag <> "POPULATE" Then
+      Changed = True
+      txtKey.Tag = "CHANGED"
+   End If
+End Sub
+
+Private Sub txtKey_LostFocus()
+   pApplyKey
+End Sub
+
+Private Sub txtRGB_Change(Index As Integer)
+   pRenderColour
+End Sub
+
+Private Sub txtRGB_KeyPress(Index As Integer, KeyAscii As Integer)
+   pOnlyNumeric KeyAscii
+End Sub

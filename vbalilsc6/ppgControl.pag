@@ -1,0 +1,334 @@
+VERSION 5.00
+Begin VB.PropertyPage ppgControl 
+   Caption         =   "Properties"
+   ClientHeight    =   3600
+   ClientLeft      =   0
+   ClientTop       =   0
+   ClientWidth     =   5790
+   BeginProperty Font 
+      Name            =   "Tahoma"
+      Size            =   8.25
+      Charset         =   0
+      Weight          =   400
+      Underline       =   0   'False
+      Italic          =   0   'False
+      Strikethrough   =   0   'False
+   EndProperty
+   PaletteMode     =   0  'Halftone
+   ScaleHeight     =   3600
+   ScaleWidth      =   5790
+   Begin VB.CommandButton cmdSize 
+      Caption         =   "&48 x 48"
+      Height          =   315
+      Index           =   3
+      Left            =   2760
+      TabIndex        =   8
+      Tag             =   "48"
+      ToolTipText     =   "48 x 48 Image List"
+      Top             =   1260
+      Width           =   855
+   End
+   Begin VB.CommandButton cmdSize 
+      Caption         =   "&72 x 72"
+      Height          =   315
+      Index           =   4
+      Left            =   3660
+      TabIndex        =   9
+      Tag             =   "72"
+      ToolTipText     =   "72 x 72 Image List"
+      Top             =   1260
+      Width           =   855
+   End
+   Begin VB.CommandButton cmdSize 
+      Caption         =   "&24 x 24"
+      Height          =   315
+      Index           =   1
+      Left            =   960
+      TabIndex        =   6
+      Tag             =   "24"
+      ToolTipText     =   "24 x 24 Image List"
+      Top             =   1260
+      Width           =   855
+   End
+   Begin VB.CommandButton cmdSize 
+      Caption         =   "&32 x 32"
+      Height          =   315
+      Index           =   2
+      Left            =   1860
+      TabIndex        =   7
+      Tag             =   "32"
+      ToolTipText     =   "32 x 32 Image list"
+      Top             =   1260
+      Width           =   855
+   End
+   Begin VB.CommandButton cmdSize 
+      Caption         =   "&16 x 16"
+      Height          =   315
+      Index           =   0
+      Left            =   60
+      TabIndex        =   5
+      Tag             =   "16"
+      ToolTipText     =   "16 x 16 Image List"
+      Top             =   1260
+      Width           =   855
+   End
+   Begin VB.TextBox txtIconSize 
+      Height          =   330
+      Index           =   1
+      Left            =   1260
+      TabIndex        =   4
+      Top             =   840
+      Width           =   720
+   End
+   Begin VB.TextBox txtIconSize 
+      Height          =   330
+      Index           =   0
+      Left            =   240
+      TabIndex        =   2
+      Top             =   840
+      Width           =   720
+   End
+   Begin VB.ComboBox cboColourDepth 
+      Height          =   315
+      Left            =   60
+      Style           =   2  'Dropdown List
+      TabIndex        =   11
+      Top             =   2040
+      Width           =   2715
+   End
+   Begin VB.Label lblVersion 
+      BackStyle       =   0  'Transparent
+      Caption         =   "ImageList"
+      ForeColor       =   &H00C0C0C0&
+      Height          =   195
+      Left            =   1440
+      TabIndex        =   14
+      Top             =   300
+      Width           =   4215
+   End
+   Begin VB.Label lblInfo 
+      BackStyle       =   0  'Transparent
+      Caption         =   "ImageList"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H00FFFFFF&
+      Height          =   195
+      Left            =   1440
+      TabIndex        =   12
+      Top             =   120
+      Width           =   3255
+   End
+   Begin VB.Image imgVBA 
+      Height          =   360
+      Left            =   120
+      Picture         =   "ppgControl.pgx":0000
+      Top             =   120
+      Width           =   1305
+   End
+   Begin VB.Label lblX 
+      Caption         =   "&X"
+      Height          =   195
+      Left            =   60
+      TabIndex        =   1
+      Top             =   900
+      Width           =   195
+   End
+   Begin VB.Label lblY 
+      Caption         =   "&Y"
+      Height          =   195
+      Left            =   1080
+      TabIndex        =   3
+      Top             =   900
+      Width           =   195
+   End
+   Begin VB.Label lblColourDepth 
+      Caption         =   "&Colour Depth:"
+      Height          =   240
+      Left            =   60
+      TabIndex        =   10
+      Top             =   1800
+      Width           =   2700
+   End
+   Begin VB.Label lblIconSize 
+      Caption         =   "Icon &Size:"
+      Height          =   240
+      Left            =   60
+      TabIndex        =   0
+      Top             =   600
+      Width           =   2700
+   End
+   Begin VB.Label lblBack 
+      BackColor       =   &H00000000&
+      BorderStyle     =   1  'Fixed Single
+      Caption         =   "Label1"
+      Height          =   495
+      Left            =   60
+      TabIndex        =   13
+      Top             =   60
+      Width           =   5655
+   End
+End
+Attribute VB_Name = "ppgControl"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = True
+Attribute VB_PredeclaredId = False
+Attribute VB_Exposed = True
+Option Explicit
+
+Private Sub cboColourDepth_Click()
+Static s_lLastIndex
+    If (cboColourDepth.ListIndex < s_lLastIndex) Then
+        If (SelectedControls(0).ImageCount > 0) Then
+            If (vbNo = MsgBox("Warning - decreasing the colour depth may affect images already stored in the control.  Are you sure you want to do this?", vbYesNo Or vbQuestion)) Then
+                cboColourDepth.Tag = "CHANGING"
+                cboColourDepth.ListIndex = s_lLastIndex
+                cboColourDepth.Tag = ""
+                Exit Sub
+            End If
+        End If
+    End If
+    If cboColourDepth.Tag = "" Then
+        Changed = True
+    End If
+    s_lLastIndex = cboColourDepth.ListIndex
+End Sub
+
+Private Sub cmdSize_Click(Index As Integer)
+Dim lNewSize As Long
+   lNewSize = CLng(cmdSize(Index).Tag)
+   With SelectedControls(0)
+       If (.ImageCount <> 0) Then
+           If (.IconSizeX <> lNewSize) Or (.IconSizeY <> lNewSize) Then
+               If (vbNo = MsgBox("Changing size of the image list will distort any images you have added." & vbCrLf & vbCrLf & "Are you sure you want to do this?", vbYesNo Or vbQuestion)) Then
+                   Exit Sub
+               End If
+           End If
+       End If
+   End With
+   txtIconSize(0) = lNewSize
+   txtIconSize(1) = lNewSize
+
+End Sub
+
+Private Sub PropertyPage_EditProperty(PropertyName As String)
+    Debug.Print "Edit " & PropertyName
+End Sub
+
+Private Sub PropertyPage_Initialize()
+   lblVersion = App.EXEName & ".OCX     Version: " & App.Major & "." & App.Minor & " (Revision: " & App.Revision & ")"
+    With cboColourDepth
+        .AddItem "(Default)"
+        .ItemData(.NewIndex) = ILC_COLOR
+        .AddItem "16 colour (4 bit)"
+        .ItemData(.NewIndex) = ILC_COLOR4
+        .AddItem "256 colour (8 bit)"
+        .ItemData(.NewIndex) = ILC_COLOR8
+        .AddItem "65,000 colours (16 bit)"
+        .ItemData(.NewIndex) = ILC_COLOR16
+        .AddItem "True Colour (24 bit)"
+        .ItemData(.NewIndex) = ILC_COLOR24
+        .AddItem "Excessive (32 bit)"
+        .ItemData(.NewIndex) = ILC_COLOR32
+    End With
+End Sub
+
+Private Sub PropertyPage_Terminate()
+    Debug.Print "ppgControl_Terminate"
+End Sub
+
+Private Sub txtIconSize_Change(Index As Integer)
+Dim lSizeX As Long
+Dim lSizeY As Long
+    If (txtIconSize(Index).Tag = "") Then
+        Changed = True
+    End If
+End Sub
+
+Private Sub PropertyPage_ApplyChanges()
+Dim lSizeX As Long
+Dim lSizeY As Long
+Dim bReload As Boolean
+Dim bRecreate As Boolean
+Dim sFile As String
+
+    If (IsNumeric(txtIconSize(0).Text)) And (IsNumeric(txtIconSize(1).Text)) Then
+        lSizeX = CLng(txtIconSize(0).Text)
+        lSizeY = CLng(txtIconSize(1).Text)
+        With SelectedControls(0)
+            If (lSizeX <> .IconSizeX) And (lSizeY <> .IconSizeY) Then
+                If (.ImageCount > 0) Then
+                    bReload = True
+                    If (vbNo = MsgBox("Changing size of the image list will distort any images you have added." & vbCrLf & vbCrLf & "Are you sure?", vbYesNo Or vbQuestion)) Then
+                        txtIconSize(0) = .IconSizeX
+                        txtIconSize(1) = .IconSizeY
+                        Exit Sub
+                    End If
+                End If
+                bRecreate = True
+            End If
+            .IconSizeX = txtIconSize(0).Text
+            .IconSizeY = txtIconSize(1).Text
+            .ColourDepth = cboColourDepth.ItemData(cboColourDepth.ListIndex)
+            If (bRecreate) Then
+                If (bReload) Then
+                    sFile = GetTempFile("ILS")
+                    .SaveToFile sFile
+                End If
+                .Clear
+                If (bReload) Then
+                    .LoadFromFile (sFile)
+                    On Error Resume Next
+                    Kill sFile
+                End If
+            End If
+        End With
+    Else
+        MsgBox "Please enter a valid icon size.", vbInformation
+    End If
+End Sub
+
+Private Sub PropertyPage_SelectionChanged()
+Dim i As Long
+Dim lSizeX As Long
+Dim lSizeY As Long
+
+    lSizeX = SelectedControls(0).IconSizeX
+    lSizeY = SelectedControls(0).IconSizeY
+    txtIconSize(0).Tag = "CHANGING"
+    txtIconSize(1).Tag = "CHANGING"
+    txtIconSize(0).Text = SelectedControls(0).IconSizeX
+    txtIconSize(1).Text = SelectedControls(0).IconSizeY
+    txtIconSize(0).Tag = ""
+    txtIconSize(1).Tag = ""
+    cboColourDepth.Tag = "CHANGING"
+    For i = 0 To cboColourDepth.ListCount - 1
+        If (cboColourDepth.ItemData(i) = SelectedControls(0).ColourDepth) Then
+            cboColourDepth.ListIndex = i
+            Exit For
+        End If
+    Next i
+    cboColourDepth.Tag = ""
+    
+End Sub
+
+Private Sub pOnlyNumeric(ByRef KeyAscii As Integer)
+    If (KeyAscii >= Asc("0")) And (KeyAscii <= Asc("9")) Then
+    Else
+      If (KeyAscii = 8) Then
+      Else
+         KeyAscii = 0
+      End If
+    End If
+End Sub
+
+
+Private Sub txtIconSize_KeyPress(Index As Integer, KeyAscii As Integer)
+   pOnlyNumeric KeyAscii
+End Sub

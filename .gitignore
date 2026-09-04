@@ -1,0 +1,53 @@
+# Build / IDE
+bin/
+obj/
+.vs/
+*.suo
+*.user
+*.vbw
+*.scc
+*.vssscc
+*.vspscc
+*.exe
+*.dll
+*.ocx
+*.lib
+*.exp
+*.pdb
+*.log
+*.tmp
+*.bak
+
+# Secrets / credentials (never upload)
+*.pfx
+*.p12
+*.pem
+*.key
+.env
+
+# Redacted originals (see *.example files)
+S Grid Control/cHeaderControl.cls
+S Grid Control/cScrollBars.cls
+S Grid Control/mGDI.bas
+S Grid Control/cFlatHeader.cls
+S Grid Control/frmTest.frm
+S Grid Control/vbalGrid.ctl
+S Grid Control/Readme2.txt
+frmSysTray/fSysTray.frm
+SysTray_Demonstration_Project/fSysTray.frm
+vbalilsc6/vbalImageList.ctl
+vbalilsc6/fTest.frm
+vbalilsc6/Readme2.txt
+vbalilsd6/fTest.frm
+vbalilsd6/Readme2.txt
+VB6_List_Bar_Full_Source/cOwnerDrawButton.cls
+VB6_List_Bar_Full_Source/cListBar.cls
+VB6_List_Bar_Full_Source/mDeclares.bas
+VB6_List_Bar_Full_Source/cListView.cls
+VB6_List_Bar_Full_Source/cMemDC.cls
+VB6_List_Bar_Full_Source/cMouseTrack.cls
+VB6_List_Bar_Full_Source/vbalListBar.ctl
+VB6_Icon_Extractor_Source_Code/cScrollBars6.cls
+VB6_Icon_Extractor_Source_Code/cFileIcon.cls
+VB6_Transparent_Menu_Demonstration/frmTransparentMenu.frm
+VB6_Transparent_Menu_Demonstration/cOwnerDrawContextMenu.cls
