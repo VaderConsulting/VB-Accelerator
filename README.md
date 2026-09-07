@@ -1,6 +1,6 @@
 # VB Accelerator
 
-Working copy of Steve McMahon vbAccelerator VB6 controls and samples: S-Grid, Image List, List Bar, popup menu DLL, SysTray, journal record hook, icon extractor, transparent menu, and multi-monitor helpers.
+Steve McMahon vbAccelerator VB6 controls and samples: S-Grid, Image List, List Bar, popup menu DLL, SysTray, journal record hook, icon extractor, transparent menu, and multi-monitor helpers.
 
 **Source last updated:** 2026-08-27 · **Language:** VB6 · **Target:** VB6 Win32 · **Output:** ActiveX DLL, ActiveX OCX, WinForms exe
 
