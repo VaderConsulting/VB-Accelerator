@@ -51,7 +51,7 @@ Open the `.vbp` in Visual Basic 6.0 IDE:
 
 ## Attribution and provenance
 
-Working copy from Dave Robinson's OneDrive Historical Dev folder `VB/VB Accelerator`.
+Working copy from my Historical Dev folder `VB/VB Accelerator`.
 Company names in `.vbp` files: Hard & Software, aaa, vbAccelerator.
 Third-party attribution: Steve McMahon / vbAccelerator. See `THIRD_PARTY_NOTICES.md`.
 
