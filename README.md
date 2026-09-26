@@ -2,7 +2,7 @@
 
 Steve McMahon vbAccelerator VB6 controls and samples: S-Grid, Image List, List Bar, popup menu DLL, SysTray, journal record hook, icon extractor, transparent menu, and multi-monitor helpers.
 
-**Source last updated:** 2026-08-27 · **Language:** VB6 · **Target:** VB6 Win32 · **Output:** ActiveX DLL, ActiveX OCX, WinForms exe
+**Source last updated:** 2003-10-27 · **Language:** VB6 · **Target:** VB6 Win32 · **Output:** ActiveX DLL, ActiveX OCX, WinForms exe
 
 ## Solution structure
 
@@ -40,7 +40,10 @@ Open the `.vbp` in Visual Basic 6.0 IDE:
 - `VB6_List_Bar_Full_Source/vbalLBar6.vbp`
 - `VB6_Icon_Extractor_Source_Code/pIconEx6.vbp`
 - `cnewmnuc/PopupMenu.vbp`
-- … and 4 more `.vbp` files in the tree
+- `cnewmnuc/pTest.vbp`
+- `Side_Logo_Demonstration_Project/TestLogo.vbp`
+- `VB6_Transparent_Menu_Demonstration/pTransparentMenu6.vbp`
+- `Multiple_Monitor_Support_Sample_Code/pTestMonitors.vbp`
 
 ## Requirements
 
